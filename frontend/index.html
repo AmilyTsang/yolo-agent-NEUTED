@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLO-Agent - 工业缺陷分析助手</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --border: #ddd;
+        }
+        body {
+            font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .header p {
+            opacity: 0.9;
+        }
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .card-header {
+            background: var(--dark);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-header h2 {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: #f0f7ff;
+        }
+        .upload-area.dragover {
+            border-color: var(--primary);
+            background: #e8f4fc;
+            transform: scale(1.02);
+        }
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        .upload-text {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .upload-hint {
+            font-size: 13px;
+            color: #999;
+        }
+        #uploadInput {
+            display: none;
+        }
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+        .result-image-container {
+            position: relative;
+            cursor: crosshair;
+        }
+        .result-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: block;
+        }
+        .defect-marker {
+            position: absolute;
+            border: 2px solid var(--danger);
+            background: rgba(231, 76, 60, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .defect-marker:hover {
+            background: rgba(231, 76, 60, 0.3);
+            transform: scale(1.05);
+        }
+        .defect-label {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            background: var(--danger);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+        .detail-image {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .defect-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .defect-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--danger);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .defect-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        .defect-item.active {
+            border-left-color: var(--primary);
+            background: #e8f4fc;
+        }
+        .defect-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .defect-type {
+            font-weight: bold;
+            color: var(--dark);
+        }
+        .defect-conf {
+            font-size: 12px;
+            color: #666;
+            background: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        .defect-severity {
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .severity-high {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .severity-medium {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+        .severity-low {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .defect-desc {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .info-section {
+            margin-bottom: 12px;
+        }
+        .info-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+        .info-title::before {
+            content: '•';
+            margin-right: 5px;
+        }
+        .info-item {
+            font-size: 12px;
+            color: #555;
+            padding: 6px 10px;
+            background: white;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .info-source {
+            font-size: 10px;
+            color: #999;
+            font-style: italic;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        .btn-success:hover {
+            background: #2ecc71;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .stats-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-item {
+            flex: 1;
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .quality-score {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .score-high {
+            color: var(--success);
+        }
+        .score-medium {
+            color: var(--warning);
+        }
+        .score-low {
+            color: var(--danger);
+        }
+        .no-result {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        .toast-success {
+            background: var(--success);
+        }
+        .toast-error {
+            background: var(--danger);
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        /* 问答模式样式 */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .chat-message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .chat-avatar.user {
+            background: var(--primary);
+            color: white;
+        }
+        .chat-avatar.bot {
+            background: var(--dark);
+            color: white;
+        }
+        .chat-content {
+            flex: 1;
+            background: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .chat-content.user {
+            background: var(--primary);
+            color: white;
+            border-radius: 12px 12px 0 12px;
+        }
+        .chat-content.bot {
+            border-radius: 12px 12px 12px 0;
+        }
+        .chat-sources {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+        }
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .chat-input button {
+            padding: 12px 20px;
+        }
+        /* 图片放大模态框 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: #eee;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .modal-close:hover {
+            background: #ddd;
+        }
+        .zoom-image {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 8px;
+        }
+        .modal-caption {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 YOLO-Agent 工业缺陷分析助手</h1>
+            <p>上传图片，自动识别缺陷并获取专业分析报告</p>
+        </div>
+        
+        <div class="main-content">
+            <!-- 上传区域 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>📁 上传图片</h2>
+                </div>
+                <div class="card-body">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📷</div>
+                        <div class="upload-text">点击或拖拽上传工业产品图片</div>
+                        <div class="upload-hint">支持 PNG、JPG、JPEG、BMP 格式</div>
+                    </div>
+                    <input type="file" id="uploadInput" accept="image/*">
+                    
+                    <div id="previewContainer" style="display: none; margin-top: 20px;">
+                        <img id="previewImage" class="preview-image" alt="预览">
+                        <div style="text-align: center; margin-top: 10px;">
+                            <button class="btn btn-primary" id="analyzeBtn">开始分析</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 检测结果 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>📊 检测结果</h2>
+                    <button class="btn btn-success" id="generateReportBtn" style="display: none; font-size: 12px; padding: 6px 12px;">📄 生成报告</button>
+                </div>
+                <div class="card-body">
+                    <div id="resultContainer" class="no-result">
+                        <div>🔬</div>
+                        <p>上传图片后显示检测结果</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 图片内容分析 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>📈 质量分析</h2>
+                </div>
+                <div class="card-body">
+                    <div id="qualityContainer" class="no-result">
+                        <div>📋</div>
+                        <p>分析结果将在这里显示</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 缺陷详细分析 -->
+            <div class="card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <h2>🔍 缺陷详细分析</h2>
+                </div>
+                <div class="card-body">
+                    <div id="analysisContainer" class="no-result">
+                        <div>📋</div>
+                        <p>分析结果将在这里显示</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 问答模式 -->
+            <div class="card" style="grid-column: span 3;">
+                <div class="card-header">
+                    <h2>💬 智能问答</h2>
+                    <span style="font-size: 12px; opacity: 0.8;">针对图片进行提问</span>
+                </div>
+                <div class="card-body">
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="chat-message">
+                                <div class="chat-avatar bot">🤖</div>
+                                <div class="chat-content bot">
+                                    你好！我是工业缺陷分析助手。上传图片后，你可以问我关于缺陷的问题，比如：
+                                    <ul style="margin: 10px 0 0 20px; font-size: 12px;">
+                                        <li>图片中有多少个缺陷？</li>
+                                        <li>划痕是什么原因造成的？</li>
+                                        <li>如何解决腐蚀问题？</li>
+                                        <li>帮我分析一下检测结果。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="questionInput" placeholder="输入你的问题..." disabled>
+                            <button class="btn btn-primary" id="askBtn" disabled>发送</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 放大模态框 -->
+    <div class="modal-overlay" id="zoomModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">×</button>
+            <img id="zoomImage" class="zoom-image" alt="放大视图">
+            <div class="modal-caption" id="zoomCaption"></div>
+        </div>
+    </div>
+    
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const uploadInput = document.getElementById('uploadInput');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const resultContainer = document.getElementById('resultContainer');
+        const analysisContainer = document.getElementById('analysisContainer');
+        const qualityContainer = document.getElementById('qualityContainer');
+        const generateReportBtn = document.getElementById('generateReportBtn');
+        const chatMessages = document.getElementById('chatMessages');
+        const questionInput = document.getElementById('questionInput');
+        const askBtn = document.getElementById('askBtn');
+        const zoomModal = document.getElementById('zoomModal');
+        const zoomImage = document.getElementById('zoomImage');
+        const zoomCaption = document.getElementById('zoomCaption');
+        const closeModal = document.getElementById('closeModal');
+        
+        let currentFile = null;
+        let currentFileId = null;
+        let currentResults = null;
+        let currentAnalysis = null;
+        let currentDefects = [];
+        
+        // 拖拽上传
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+        
+        uploadArea.addEventListener('click', () => {
+            uploadInput.click();
+        });
+        
+        uploadInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+        
+        function handleFile(file) {
+            currentFile = file;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block';
+                resultContainer.innerHTML = '<div class="no-result"><div>🔬</div><p>点击"开始分析"按钮进行检测</p></div>';
+                analysisContainer.innerHTML = '<div class="no-result"><div>📋</div><p>分析结果将在这里显示</p></div>';
+                qualityContainer.innerHTML = '<div class="no-result"><div>📈</div><p>质量分析将在这里显示</p></div>';
+                generateReportBtn.style.display = 'none';
+                questionInput.disabled = true;
+                askBtn.disabled = true;
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        analyzeBtn.addEventListener('click', async () => {
+            if (!currentFile) return;
+            
+            resultContainer.innerHTML = '<div class="loading"><div class="spinner"></div><p>正在检测中...</p></div>';
+            analysisContainer.innerHTML = '<div class="loading"><div class="spinner"></div><p>正在分析中...</p></div>';
+            qualityContainer.innerHTML = '<div class="loading"><div class="spinner"></div><p>正在分析中...</p></div>';
+            
+            const formData = new FormData();
+            formData.append('file', currentFile);
+            
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentFileId = data.file_id;
+                    currentResults = data.defects;
+                    currentAnalysis = data.analysis;
+                    currentDefects = data.defects;
+                    
+                    displayResults(data);
+                    displayAnalysis(data.analysis);
+                    await analyzeImageContent(data.file_id, data.defects);
+                    
+                    generateReportBtn.style.display = 'block';
+                    questionInput.disabled = false;
+                    askBtn.disabled = false;
+                    
+                    showToast('检测完成！', 'success');
+                } else {
+                    resultContainer.innerHTML = `<div class="no-result"><div>❌</div><p>${data.error}</p></div>`;
+                    showToast('检测失败: ' + data.error, 'error');
+                }
+            } catch (error) {
+                resultContainer.innerHTML = '<div class="no-result"><div>❌</div><p>网络错误，请重试</p></div>';
+                showToast('网络错误', 'error');
+            }
+        });
+        
+        function displayResults(data) {
+            const hasDefects = data.defects && data.defects.length > 0;
+            
+            let html = `
+                <div class="result-image-container" id="resultImageContainer">
+                    <img src="${data.result_image}" class="result-image" alt="检测结果">
+            `;
+            
+            if (hasDefects) {
+                const img = new Image();
+                img.onload = () => {
+                    const container = document.getElementById('resultImageContainer');
+                    const resultImg = container.querySelector('.result-image');
+                    const containerWidth = resultImg.offsetWidth;
+                    const scale = containerWidth / img.width;
+                    
+                    data.defects.forEach((defect, idx) => {
+                        const [x1, y1, x2, y2] = defect.bbox;
+                        const width = (x2 - x1) * scale;
+                        const height = (y2 - y1) * scale;
+                        const left = x1 * scale;
+                        const top = y1 * scale;
+                        
+                        const marker = document.createElement('div');
+                        marker.className = 'defect-marker';
+                        marker.style.left = left + 'px';
+                        marker.style.top = top + 'px';
+                        marker.style.width = width + 'px';
+                        marker.style.height = height + 'px';
+                        marker.setAttribute('data-defect-index', idx);
+                        
+                        const label = document.createElement('div');
+                        label.className = 'defect-label';
+                        label.textContent = defect.type;
+                        marker.appendChild(label);
+                        
+                        marker.addEventListener('click', () => {
+                            showDefectDetail(idx);
+                        });
+                        
+                        container.appendChild(marker);
+                    });
+                };
+                img.src = data.result_image;
+            }
+            
+            html += `
+                </div>
+                <div style="margin-top: 15px;">
+                    <div class="stats-bar">
+                        <div class="stat-item">
+                            <div class="stat-value">${hasDefects ? data.defects.length : 0}</div>
+                            <div class="stat-label">缺陷数量</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${hasDefects ? new Set(data.defects.map(d => d.type)).size : 0}</div>
+                            <div class="stat-label">缺陷类型</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            resultContainer.innerHTML = html;
+        }
+        
+        function displayAnalysis(analysis) {
+            if (!analysis || analysis.length === 0) {
+                analysisContainer.innerHTML = '<div class="no-result"><div>✅</div><p>未检测到缺陷，产品质量良好！</p></div>';
+                return;
+            }
+            
+            const html = analysis.map((item, idx) => {
+                const severity = getSeverity(item.type);
+                const severityClass = `severity-${severity}`;
+                
+                return `
+                    <div class="defect-item" data-index="${idx}" onclick="selectDefect(${idx})">
+                        <div class="defect-header">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span class="defect-type">缺陷 ${idx + 1}: ${item.type}</span>
+                                <span class="defect-severity ${severityClass}">${severity === 'high' ? '高' : severity === 'medium' ? '中' : '低'}风险</span>
+                            </div>
+                            <span class="defect-conf">置信度: ${(item.confidence * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="defect-desc">${item.description}</div>
+                        
+                        ${item.causes && item.causes.length > 0 ? `
+                            <div class="info-section">
+                                <div class="info-title">💡 可能原因</div>
+                                ${item.causes.map(c => `
+                                    <div class="info-item">
+                                        <span>${c.cause}</span>
+                                        <span class="info-source">来源: ${c.source}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        ${item.solutions && item.solutions.length > 0 ? `
+                            <div class="info-section">
+                                <div class="info-title">🛠️ 解决方案</div>
+                                ${item.solutions.map(s => `
+                                    <div class="info-item">
+                                        <span>${s.solution}</span>
+                                        <span class="info-source">来源: ${s.source}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        ${item.prevention && item.prevention.length > 0 ? `
+                            <div class="info-section">
+                                <div class="info-title">✅ 预防措施</div>
+                                ${item.prevention.map(p => `
+                                    <div class="info-item">
+                                        <span>${p.method}</span>
+                                        <span class="info-source">来源: ${p.source}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+            
+            analysisContainer.innerHTML = html;
+        }
+        
+        async function analyzeImageContent(fileId, defects) {
+            try {
+                const response = await fetch('/api/analyze_image', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file_id: fileId, defects: defects })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayQualityAnalysis(data.analysis);
+                }
+            } catch (error) {
+                console.error('分析失败:', error);
+            }
+        }
+        
+        function displayQualityAnalysis(analysis) {
+            const score = analysis.quality_score;
+            const scoreClass = score >= 80 ? 'score-high' : score >= 60 ? 'score-medium' : 'score-low';
+            const scoreText = score >= 80 ? '优秀' : score >= 60 ? '良好' : score >= 40 ? '一般' : '较差';
+            
+            let html = `
+                <div class="quality-score ${scoreClass}">${score}分</div>
+                <div style="text-align: center; color: #666; margin-bottom: 20px;">质量评级: ${scoreText}</div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <p style="font-size: 13px; color: #555; line-height: 1.6;">${analysis.summary}</p>
+                </div>
+            `;
+            
+            if (analysis.defect_details && analysis.defect_details.length > 0) {
+                html += `
+                    <div style="margin-bottom: 15px;">
+                        <h4 style="margin-bottom: 10px; color: #333;">缺陷详情</h4>
+                        <div style="max-height: 200px; overflow-y: auto;">
+                            ${analysis.defect_details.map(d => `
+                                <div style="display: flex; justify-content: space-between; padding: 8px 12px; background: white; border-radius: 4px; margin-bottom: 5px;">
+                                    <div>
+                                        <strong>${d.index}.</strong> ${d.type}
+                                        <span class="defect-severity severity-${d.severity}" style="margin-left: 8px;">${d.severity === 'high' ? '高' : d.severity === 'medium' ? '中' : '低'}</span>
+                                    </div>
+                                    <span style="color: #666; font-size: 12px;">${(d.confidence * 100).toFixed(0)}%</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            if (analysis.suggestions && analysis.suggestions.length > 0) {
+                html += `
+                    <div>
+                        <h4 style="margin-bottom: 10px; color: #333;">💡 改进建议</h4>
+                        <div style="max-height: 150px; overflow-y: auto;">
+                            ${analysis.suggestions.map((s, i) => `
+                                <div style="padding: 8px 12px; background: #e8f5e9; border-radius: 4px; margin-bottom: 5px; font-size: 13px; color: #2e7d32;">
+                                    ${i+1}. ${s.suggestion}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            qualityContainer.innerHTML = html;
+        }
+        
+        function getSeverity(defectType) {
+            if (['断裂', '裂纹'].includes(defectType)) return 'high';
+            if (['腐蚀', '变形', '凹陷'].includes(defectType)) return 'medium';
+            return 'low';
+        }
+        
+        function selectDefect(index) {
+            document.querySelectorAll('.defect-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+            
+            showDefectDetail(index);
+        }
+        
+        function showDefectDetail(index) {
+            if (!currentResults || !currentResults[index]) return;
+            
+            const defect = currentResults[index];
+            const img = new Image();
+            img.onload = () => {
+                const [x1, y1, x2, y2] = defect.bbox;
+                const padding = 20;
+                
+                const cropX = Math.max(0, x1 - padding);
+                const cropY = Math.max(0, y1 - padding);
+                const cropWidth = Math.min(img.width - cropX, (x2 - x1) + padding * 2);
+                const cropHeight = Math.min(img.height - cropY, (y2 - y1) + padding * 2);
+                
+                zoomImage.src = '/static/' + currentFileId + '_result.jpg';
+                zoomCaption.textContent = `缺陷 ${index + 1}: ${defect.type}（置信度: ${(defect.confidence * 100).toFixed(1)}%）`;
+                zoomModal.classList.add('show');
+            };
+            img.src = '/uploads/' + currentFileId + '.jpg';
+        }
+        
+        closeModal.addEventListener('click', () => {
+            zoomModal.classList.remove('show');
+        });
+        
+        zoomModal.addEventListener('click', (e) => {
+            if (e.target === zoomModal) {
+                zoomModal.classList.remove('show');
+            }
+        });
+        
+        generateReportBtn.addEventListener('click', async () => {
+            if (!currentResults || !currentAnalysis) return;
+            
+            try {
+                const response = await fetch('/api/generate_report', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        file_id: currentFileId,
+                        defects: currentResults,
+                        analysis: currentAnalysis
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    window.open(`/reports/${data.report_path}`, '_blank');
+                    showToast('报告已生成！', 'success');
+                } else {
+                    showToast('生成报告失败: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showToast('网络错误', 'error');
+            }
+        });
+        
+        askBtn.addEventListener('click', async () => {
+            const question = questionInput.value.trim();
+            if (!question) return;
+            
+            // 添加用户问题
+            addChatMessage(question, 'user');
+            questionInput.value = '';
+            askBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/api/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        question: question,
+                        file_id: currentFileId,
+                        defects: currentResults,
+                        analysis: currentAnalysis
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    addChatMessage(data.answer, 'bot', data.sources);
+                } else {
+                    addChatMessage('抱歉，我无法回答这个问题。', 'bot');
+                }
+            } catch (error) {
+                addChatMessage('网络错误，请重试。', 'bot');
+            }
+            
+            askBtn.disabled = false;
+        });
+        
+        questionInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                askBtn.click();
+            }
+        });
+        
+        function addChatMessage(content, sender, sources = []) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message';
+            
+            const avatar = document.createElement('div');
+            avatar.className = `chat-avatar ${sender}`;
+            avatar.textContent = sender === 'user' ? '👤' : '🤖';
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = `chat-content ${sender}`;
+            contentDiv.innerHTML = content.replace(/\n/g, '<br>');
+            
+            if (sources.length > 0 && sender === 'bot') {
+                const sourcesDiv = document.createElement('div');
+                sourcesDiv.className = 'chat-sources';
+                sourcesDiv.textContent = '来源: ' + sources.join(', ');
+                contentDiv.appendChild(sourcesDiv);
+            }
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(contentDiv);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
