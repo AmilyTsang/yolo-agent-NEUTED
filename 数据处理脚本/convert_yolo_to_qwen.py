@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-NEU-DET YOLO 格式转 Qwen2-VL 微调数据格式
-适用于 yolo-agent-NEUTED 项目结构
+NEU-DET YOLO 格式转 Qwen2-VL 微调数据格式 (最终版)
+特点：紧凑的单行输出，包含编号、坐标、原因及建议。
 """
 
 import os
@@ -20,19 +20,57 @@ NEU_DET_CLASSES = [
     'scratches'         # 划痕
 ]
 
+def generate_defect_analysis(boxes_info):
+    """
+    生成结构化的缺陷分析文本。
+    格式：缺陷1: [类别 | 坐标 | 原因 | 建议]; 缺陷2: [...]
+    """
+    if not boxes_info:
+        return "检测结果: 未发现明显缺陷。"
+
+    results = []
+    for i, box in enumerate(boxes_info, 1):
+        bbox = box["bbox"]
+        label = box["label"]
+        x1, y1, x2, y2 = bbox[0], bbox[1], bbox[2], bbox[3]
+        
+        # 1. 原因分析库
+        reasons = {
+            "crazing": "表面出现网状裂纹，通常由冷却不当或材料内部应力集中引起",
+            "inclusion": "表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当",
+            "patches": "表面出现不规则斑块，多由氧化皮脱落不均或局部腐蚀造成",
+            "pitted_surface": "表面存在点状凹坑，通常是酸洗或轧制过程中的局部腐蚀所致",
+            "rolled-in_scale": "氧化皮在轧制过程中被压入钢体表面，因除鳞不彻底导致",
+            "scratches": "表面存在线性划痕，多为运输或加工过程中机械接触损伤"
+        }
+        
+        # 2. 预防建议库
+        suggestions = {
+            "crazing": "优化冷却工艺，控制冷却速率均匀性，进行应力消除退火",
+            "inclusion": "加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+            "patches": "定期清理轧辊和导卫，优化乳化液浓度与喷射压力",
+            "pitted_surface": "严格控制酸洗工艺参数，确保轧辊表面光洁度",
+            "rolled-in_scale": "强化高压水除鳞效果，优化加热炉气氛控制",
+            "scratches": "检查生产线导槽与辊道，消除尖锐棱角，规范吊装操作"
+        }
+        
+        reason = reasons.get(label, "未知原因")
+        suggestion = suggestions.get(label, "建议检查生产工艺")
+        
+        # 3. 组合成紧凑字符串 (使用 | 分隔不同字段，不使用换行符)
+        # 格式：缺陷1: crazing | (1,9)-(108,121) | 原因: ... | 建议: ...
+        result_str = f"缺陷{i}: {label} | ({x1},{y1})-({x2},{y2}) | 原因: {reason} | 建议: {suggestion}"
+        results.append(result_str)
+    
+    # 多个缺陷用分号分隔
+    return "; ".join(results)
+
 def convert_single_split(yolo_images_dir, yolo_labels_dir, output_jsonl, split_name):
     """
     转换单个数据集划分（train/valid/test）
-    
-    Args:
-        yolo_images_dir: YOLO格式图片目录
-        yolo_labels_dir: YOLO格式标签目录
-        output_jsonl: 输出的JSONL文件路径
-        split_name: 数据集划分名称（用于日志）
     """
     data_list = []
     
-    # 确保目录存在
     if not os.path.exists(yolo_images_dir):
         print(f"❌ 错误: 图片目录不存在: {yolo_images_dir}")
         return 0
@@ -53,7 +91,6 @@ def convert_single_split(yolo_images_dir, yolo_labels_dir, output_jsonl, split_n
         label_path = Path(yolo_labels_dir) / f"{img_path.stem}.txt"
         
         if not label_path.exists():
-            # 如果没有标签文件，跳过（可能是负样本）
             continue
         
         # 读取图片尺寸
@@ -86,7 +123,6 @@ def convert_single_split(yolo_images_dir, yolo_labels_dir, output_jsonl, split_n
                 x1, y1 = max(0, x1), max(0, y1)
                 x2, y2 = min(w, x2), min(h, y2)
                 
-                # 获取类别名称
                 if cls_id < len(NEU_DET_CLASSES):
                     class_name = NEU_DET_CLASSES[cls_id]
                 else:
@@ -97,31 +133,30 @@ def convert_single_split(yolo_images_dir, yolo_labels_dir, output_jsonl, split_n
                     "label": class_name
                 })
         
-        # 如果没有检测到框，跳过
         if not boxes_info:
             continue
         
         # === 构建 Qwen2-VL 训练对话格式 ===
-        # 使用相对路径（相对于项目根目录）
         relative_img_path = str(img_path).replace('\\', '/')
         
-        # 构建消息列表
+        # 调用新的生成函数
+        assistant_response = generate_defect_analysis(boxes_info)
+        
         messages = [
             {
                 "role": "system",
-                "content": "你是一名专业的钢铁表面缺陷检测专家。请根据图片准确识别缺陷类型、位置和严重程度。"
+                "content": "你是一名专业的钢铁表面缺陷检测专家。请根据图片识别缺陷，并按‘缺陷编号: 类别 | 坐标 | 原因 | 建议’的格式输出。"
             },
             {
                 "role": "user",
-                "content": f"<|image|>{relative_img_path}\n请分析这张钢铁表面图片，识别所有缺陷并给出详细分析。"
+                "content": f"<|image|>{relative_img_path}\n请检测这张图片中的所有钢材表面缺陷，给出类别、位置、原因分析及预防建议。"
             },
             {
                 "role": "assistant",
-                "content": generate_defect_analysis(boxes_info, relative_img_path)
+                "content": assistant_response
             }
         ]
         
-        # 构建JSONL条目
         data_item = {
             "id": img_path.stem,
             "image": relative_img_path,
@@ -140,46 +175,8 @@ def convert_single_split(yolo_images_dir, yolo_labels_dir, output_jsonl, split_n
     
     return len(data_list)
 
-def generate_defect_analysis(boxes_info, img_path):
-    """生成缺陷分析的文本内容"""
-    if not boxes_info:
-        return "图片中未发现明显缺陷。"
-    
-    analysis = f"在这张钢铁表面图片中，检测到 {len(boxes_info)} 处缺陷：\n\n"
-    
-    for i, box in enumerate(boxes_info, 1):
-        bbox = box["bbox"]
-        label = box["label"]
-        
-        # 计算缺陷面积占比
-        area = (bbox[2] - bbox[0]) * (bbox[3] - bbox[1])
-        
-        analysis += f"{i}. **{label}**\n"
-        analysis += f"   - 位置坐标: [{bbox[0]}, {bbox[1]}, {bbox[2]}, {bbox[3]}]\n"
-        analysis += f"   - 缺陷面积: {area} 像素\n"
-        
-        # 根据缺陷类型添加专业分析
-        if label == "crazing":
-            analysis += f"   - 分析: 表面出现网状裂纹，通常由冷却不当或材料应力引起。\n"
-        elif label == "inclusion":
-            analysis += f"   - 分析: 表面含有非金属夹杂物，可能影响材料强度和表面质量。\n"
-        elif label == "patches":
-            analysis += f"   - 分析: 表面出现不规则斑块，可能是氧化皮脱落或腐蚀造成。\n"
-        elif label == "pitted_surface":
-            analysis += f"   - 分析: 表面有点状凹坑，通常由腐蚀或制造过程中的缺陷导致。\n"
-        elif label == "rolled-in_scale":
-            analysis += f"   - 分析: 轧制过程中氧化皮压入表面，影响表面光洁度。\n"
-        elif label == "scratches":
-            analysis += f"   - 分析: 表面存在划痕，可能是运输或加工过程中造成的机械损伤。\n"
-        
-        analysis += "\n"
-    
-    analysis += "**处理建议**: 建议根据具体缺陷类型采取相应的修复措施，如打磨、涂层或更换材料。"
-    
-    return analysis
-
 def main():
-    parser = argparse.ArgumentParser(description="NEU-DET YOLO格式转Qwen2-VL微调数据格式")
+    parser = argparse.ArgumentParser(description="NEU-DET YOLO格式转Qwen2-VL微调数据格式 (最终版)")
     parser.add_argument("--data_root", type=str, default="NEU-DET", 
                        help="NEU-DET数据集根目录")
     parser.add_argument("--output_dir", type=str, default=".", 
@@ -189,9 +186,7 @@ def main():
     
     args = parser.parse_args()
     
-    # 创建输出目录
     os.makedirs(args.output_dir, exist_ok=True)
-    
     total_samples = 0
     
     print("🚀 开始转换 NEU-DET 数据集到 Qwen2-VL 格式...")

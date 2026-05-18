@@ -1,0 +1,1245 @@
+{
+  "metrics": {
+    "TP": 0,
+    "FP": 98,
+    "FN": 196,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F1": 0
+  },
+  "details": [
+    {
+      "image": "pitted_surface_16.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "crazing_10.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | cause | Presence of impurities on the surface, reducing durability | Clean the surface with a soft brush, avoid contact with air",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_11.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (11,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (1,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 1
+    },
+    {
+      "image": "crazing_11.jpg",
+      "prediction": "缺陷1: inclusion | (100,100)-(150,150) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "crazing",
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 3
+    },
+    {
+      "image": "rolled-in_scale_12.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(19,40) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (118,1)-(130,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (119,1)-(130,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷4: inclusion | (100,1)-(119,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷5: inclusion | (100,1)-(119,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 5,
+      "fn": 2
+    },
+    {
+      "image": "crazing_12.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_13.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (11,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (100,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷4: inclusion | (100,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 4,
+      "fn": 2
+    },
+    {
+      "image": "crazing_13.jpg",
+      "prediction": "",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing",
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "image": "rolled-in_scale_14.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (111,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (100,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷4: inclusion | (100,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 4,
+      "fn": 1
+    },
+    {
+      "image": "crazing_14.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,99) |原因 | 缺陷在表面前部，由固态合金在凝固过程中生长",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "rolled-in_scale_15.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (119,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (119,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 1
+    },
+    {
+      "image": "crazing_15.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_16.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,198) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (11,1)-(199,198) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (10,1)-(199,198) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷4: inclusion | (10,1)-(199,198) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 4,
+      "fn": 2
+    },
+    {
+      "image": "crazing_16.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,99) |原因 | 缺陷在表面前部，由固态合金在凝固过程中生长",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_17.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(19,40) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (11,1)-(19,40) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (10,1)-(19,40) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷4: inclusion | (10,1)-(19,40) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 4,
+      "fn": 1
+    },
+    {
+      "image": "crazing_17.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nExplanation\nInclusion",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_18.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (119,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (11,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 2
+    },
+    {
+      "image": "crazing_18.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | cause | Presence of impurities on the surface, reducing durability | Clean the surface with a soft brush, avoid contact with air",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_19.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,198) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (199,1)-(200,199) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (199,199)-(200,200) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷4: inclusion | (199,199)-(200,200) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 4,
+      "fn": 2
+    },
+    {
+      "image": "crazing_19.jpg",
+      "prediction": "",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "rolled-in_scale_20.jpg",
+      "prediction": "缺陷1: inclusion | (10,100)-(150,150) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (100,1)-(150,50) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (100,100)-(150,150) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷4: inclusion | (100,100)-(150,150) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷5: inclusion | (100,100)-(150,150) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 5,
+      "fn": 3
+    },
+    {
+      "image": "crazing_20.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (100,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (100,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "crazing",
+        "crazing",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 3
+    },
+    {
+      "image": "rolled-in_scale_6.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (119,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (1,199)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷4: inclusion | (1,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 4,
+      "fn": 3
+    },
+    {
+      "image": "crazing_6.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(100,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (119,1)-(199,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (100,1)-(199,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_7.jpg",
+      "prediction": "缺陷1: inclusion | (100,100)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (100,100)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (100,100)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 2
+    },
+    {
+      "image": "crazing_7.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (119,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 2,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_8.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (11,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (1,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 2
+    },
+    {
+      "image": "crazing_8.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n| 缺陷 | �疵类型 | 坐标 | 原因 | 建议 |\n| --- | --- | --- | --- | --- |\n| 缺陷 | 缺陷 | 全图 | 原因 | 检查过程中的误判或产品自然状态的不均匀性 | 经常性全面检测，注意观察并处理不规则色泽",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_9.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (111,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (100,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷4: inclusion | (100,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 4,
+      "fn": 1
+    },
+    {
+      "image": "crazing_9.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,99) |原因: 纹路上存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注\nnum_1 | category | surface | reason |建议\nnum_2 | category | surface | reason |num_1num_2",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "crazing",
+        "crazing"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "scratches_10.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | cause | Presence of impurities on the surface, reducing durability | Clean the surface with proper chemicals, monitor for future occurrencenum",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches",
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "image": "inclusion_10.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) |原因 | 缺陷在表面前部，由固态合金在凝固过程中生长",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "image": "scratches_11.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inhibition_",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "inclusion_11.jpg",
+      "prediction": "缺陷1: category | surface | (1,1)-(100,199) | reason |损伤源于表面扫描过程中对金属局部剥落; 建议 | 请保持表面清洁，避免扫描压力不均; 缺陷2: category | surface | (119,1)-(199,199) | reason |损伤源于对金属局部剥落; 建议 | 请保持表面清洁，避免扫描压力不均",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "scratches_12.jpg",
+      "prediction": "",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "inclusion_12.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(199,199) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (198,1)-(199,199) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (199,1)-(200,199) | 原因: 在钢中存在非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 5
+    },
+    {
+      "image": "scratches_13.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 2
+    },
+    {
+      "image": "inclusion_13.jpg",
+      "prediction": "缺陷1: category | 表面 | (0,1)-(100,199) | 原因 | 由于生产过程中的氧化皮脱落不完全，留下表面腐蚀斑块 | 建议严格控制酸洗工艺，确保氧化皮完全脱落",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 5
+    },
+    {
+      "image": "scratches_14.jpg",
+      "prediction": "",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "inclusion_14.jpg",
+      "prediction": "",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "scratches_15.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | cause | Contamination in rolling process | Clean roll rolls thoroughly; avoid inclusion formation; inspect and eliminate inclusion sourcesuser\noutput\nThis system detected 120inclusion(11,111),(996,996) at Surface(1,111)-(996,996)imageuser\noutput\nThe system detected 132inclusion(11,111)-(996,996) at Surface(1,1)-(996,996)expert",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches",
+        "scratches",
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 4
+    },
+    {
+      "image": "inclusion_15.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) |源于轧制过程中皮带夹杂吸入 |应严格控制轧制参数和辊道清洁;\nnum_14 | category | surface | reason |num_15 |num_16 |num_17 |num_18 |num_19 |num_20 |num_21 |num_22 |num_23 |num_24 |num_25 |num_26 |num_27 |num_28 |num_29 |num_30 |num_31 |num_32 |num_33 |num_34 |num_35 |num_36 |num_37 |num_38 |num_39 |num_40 |num_41 |num_42 |num_43 |num_44 |num_45 |num_46 |num_47 |num_48 |num_49 |num_50 |num_51 |num_52 |num_53 |num_54 |num_55 |num_56 |num_57 |num_58 |num_59 |num_60 |num_61 |num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num_num",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 6
+    },
+    {
+      "image": "scratches_16.jpg",
+      "prediction": "",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "inclusion_16.jpg",
+      "prediction": "缺陷1: category | surface | (1,1)-(199,198) |原因 | 由于轧制过程中的氧化皮脱落不完全，留下表面腐蚀斑块 | 建议严格控制轧辊与导卫之间的压力均匀，优化氧化皮清除效果",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "image": "scratches_17.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | cause | Contamination in rolling process | Monitor for alloy addition and control rolling conditions严格控制表面不得含有任何种类的麻点",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "inclusion_17.jpg",
+      "prediction": "缺陷1: category | surface | (1,1)-(199,198) |原因 | 由于轧制过程中的辊缝控制不当，导致表面出现不规则斑块 | 建议严格控制轧辊压力分布均匀性",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 6
+    },
+    {
+      "image": "scratches_18.jpg",
+      "prediction": "缺陷1: category | 表面 | (12,1)-(150,199) | 原因 | 由于轧制过程中的严重氧化皮脱落，暴露露在大气中的钢面被氧化并形成不规则线条 | 防止氧化皮脱落不彻底，控制轧辊压力均匀",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "inclusion_18.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | cause | Presence of impurities on the surface, reducing durability | Clean the surface with a soft brush, avoid contact with air",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 9
+    },
+    {
+      "image": "scratches_19.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | cause | Presence of impurities on the surface, reducing durability | Clean the surface with a soft brush, avoid contact with air",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "inclusion_19.jpg",
+      "prediction": "缺陷1: category | surface | (1,1)-(199,198) | reason |损伤源于表面扫描过程中对金属氧化皮的压榨，原因应排除并控制压榨压力与扫描速度 | suggestion | 对表面进行定期检查，控制压榨均匀性",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "image": "scratches_20.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | origin | inclusion in steel matrix can lead to weak connection and corrosion vulnerability | please inspect and eliminate inclusion strictly, apply proper heating and cooling rate;\noutput\nForoutput",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "inclusion_20.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 4
+    },
+    {
+      "image": "scratches_6.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(199,199) | 原因: 图片中存在大大的点状非金属夹杂物，对钢质严重污染 | 建议: 检查并清除杂货，优化炼钢工艺，控制夹杂物形成环境",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "scratches",
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 3
+    },
+    {
+      "image": "inclusion_6.jpg",
+      "prediction": "缺陷1: inclusion | (1,100)-(19,150) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (119,1)-(199,150) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (119,1)-(199,150) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 3
+    },
+    {
+      "image": "scratches_7.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inhibition_",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches",
+        "scratches",
+        "scratches",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 4
+    },
+    {
+      "image": "inclusion_7.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (198,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (199,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 2
+    },
+    {
+      "image": "scratches_8.jpg",
+      "prediction": "缺陷1: category | surface | (1,1)-(199,198) |原因 | 由于轧制过程中的机械损伤导致表面出现线性裂纹，应及早发现并消除压下辊表面尖锐棱角",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "inclusion_8.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(19,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (119,1)-(199,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (119,1)-(199,100) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "inclusion",
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 2
+    },
+    {
+      "image": "scratches_9.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) |源于轧制过程中皮带夹杂吸入 |应严格控制轧制参数和辊道清洁;\nnum_14 | category | surface | reason | 建议\nnum_15 | category | surface | reason | 建议\nnum_16 | category | surface | 原因 | 应加强轧制过程监控与控制;\nnum_17 | category | surface | 原因 | 建议",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "scratches",
+        "scratches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "inclusion_9.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "inclusion"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "patches_10.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (198,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 2,
+      "fn": 2
+    },
+    {
+      "image": "patches_11.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(19,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (11,1)-(19,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (1,1)-(19,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 2
+    },
+    {
+      "image": "patches_12.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (11,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "patches",
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 2,
+      "fn": 3
+    },
+    {
+      "image": "patches_13.jpg",
+      "prediction": "缺陷1: category | 表面 | (128,1)-(175,175) | 原因 | 由于生产过程中的氧化皮脱落不均，导致表面出现斑点",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "patches_14.jpg",
+      "prediction": "缺陷1: category | surface | (120,66)-(199,198) | reason | caused by localized corrosion due to poor coating thickness or surface scabbing |建议 | ensure coating thickness and prevent scabbing",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "patches_15.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | cause | Presence of impurities on the surface, indicating need for rigorous cleaning processes | Ensure that surface is clean to prevent inclusion formation;\nnum_1 | category | surface | reason |建议\nnum_1 |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude |num-exclude",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "patches_16.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nExplanation\nThe image contains a few surface defects. The most significant one is a line of corrosion on the surface, which is caused by exposure to ambient factors such as humidity and oxygen.",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "patches",
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "image": "patches_17.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "patches",
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 3
+    },
+    {
+      "image": "patches_18.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown>\nsystem",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "patches",
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "image": "patches_19.jpg",
+      "prediction": "缺陷1: category | surface | (1,1)-(199,199) |原因 | 由于轧制过程中的辊缝控制不当，导致轧辊表面腐蚀扩展 | 建议严格控制轧辊轧制参数，优化辊缝控制系统",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "patches",
+        "patches",
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 4
+    },
+    {
+      "image": "patches_20.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n| 缺陷 | �疵类型 | 坐标 | 原因 | 建议 |\n| --- | --- | --- | --- | --- |\n| 缺陷 | 坏汉 | (1,1)-(100,198) | 在轧制过程中皮带被压坏，导致钢坯表面出现不规则损伤 | 严格控制轧辊压力分布，优化轧制工艺 |",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "patches_6.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (198,1)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 2,
+      "fn": 2
+    },
+    {
+      "image": "patches_7.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | causes inclusion growth and pollution absorption | Monitor and eliminate inclusion in rolling process; prevent pollution in rolling mill;\noutput\nwhile System-Exclusion not detectedinputs\nwhile System-Exclusion not detectedoutput\nwhile System-Exclusion not detectedinputs\nwhile System-Exclusion not detected- Inclusion | (1,1)-(100,199) | causes inclusion growth and pollution absorption | Monitor and eliminate inclusion in rolling process; prevent pollution in rolling mill;\n----------------",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "patches_8.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(19,40) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "patches",
+        "patches",
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 3
+    },
+    {
+      "image": "patches_9.jpg",
+      "prediction": "缺陷1: inclusion | (100,100)-(199,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "patches"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_13.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "pitted_surface",
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 2
+    },
+    {
+      "image": "pitted_surface_10.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_14.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_11.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) | cause | Presence of impurities on the surface, reducing durability | Clean the surface with a soft brush, avoid contact with air",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_15.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_12.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_7.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "pitted_surface",
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 2
+    },
+    {
+      "image": "pitted_surface_17.jpg",
+      "prediction": "缺陷1: category | 表面 | (1,1)-(199,199) | 原因 | 由于生产过程中的氧化皮脱落不均匀，导致表面出现斑点",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_8.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,99) | cause | inclusion in steel matrix can reduce material strength and durability | inspect for and remove inclusion immediately; prevent from occurring in manufacturing process\nnum_1 | category | surface | reason |建议\nnum_1 |text(\"Inclusion\")num_1text(\"entity{|word\"|text|\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word\"|text(\"word",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_18.jpg",
+      "prediction": "缺陷1: category | surface | location | reason |建议\nmarkdown\n- Inclusion | (1,1)-(100,199) |原因 | inclusion 在表面造成不均匀颜色并引入气泡 |请及早发现并清除",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_9.jpg",
+      "prediction": "",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image": "pitted_surface_19.jpg",
+      "prediction": "缺陷1: inclusion | (1,1)-(100,199) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "pitted_surface",
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 2
+    },
+    {
+      "image": "rolled-in_scale_10.jpg",
+      "prediction": "缺陷1: inclusion | (10,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷2: inclusion | (10,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注; 缺陷3: inclusion | (10,1)-(199,198) | 原因: 表面含有非金属夹杂物，源于冶炼或连铸工艺控制不当 | 建议: 加强炼钢过程渣系控制，提高纯净度，优化连铸保护浇注",
+      "pred_boxes": [
+        "inclusion",
+        "inclusion",
+        "inclusion"
+      ],
+      "gt_boxes": [
+        "rolled-in_scale",
+        "rolled-in_scale"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 2
+    },
+    {
+      "image": "pitted_surface_20.jpg",
+      "prediction": "缺陷1: category | 表面 | (0,1)-(100,199) | 原因 | 由于生产过程空气污染严重，导致钢材表面产生斑点状腐蚀",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "pitted_surface",
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image": "pitted_surface_6.jpg",
+      "prediction": "",
+      "pred_boxes": [],
+      "gt_boxes": [
+        "pitted_surface"
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    }
+  ]
+}

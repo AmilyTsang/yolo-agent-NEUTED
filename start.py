@@ -1,10 +1,15 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import os
+import sys
 import subprocess
 
 def main():
+    # 🔧 修复 libgomp 警告
+    os.environ["OMP_NUM_THREADS"] = "1"
+    os.environ["OPENBLAS_NUM_THREADS"] = "1"
+    
     # 确保所有目录存在
-    dirs = ['models', 'uploads', 'static', 'reports']
+    dirs = ['models', 'uploads', 'reports', 'backend', 'frontend']
     for d in dirs:
         os.makedirs(d, exist_ok=True)
     
@@ -14,7 +19,7 @@ def main():
     print()
     
     # 启动 Flask 应用
-    subprocess.run(['python', 'backend/app.py'])
+    subprocess.run([sys.executable, 'backend/app.py'])
 
 if __name__ == '__main__':
     main()
