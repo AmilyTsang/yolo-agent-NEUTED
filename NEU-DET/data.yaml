@@ -1,6 +1,6 @@
-train: ../NEU-DET/train/images
-val: ../NEU-DET/valid/images
-test: ../NEU-DET/test/images
-
+path: /root/autodl-tmp/yolo-agent-NEUTED/NEU-DET
+train: train/images
+val: valid/images
+test: test/images
 nc: 6
 names: ['crazing', 'inclusion', 'patches', 'pitted_surface', 'rolled-in_scale', 'scratches']

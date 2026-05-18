@@ -1,0 +1,39 @@
+# 忽略 ultralytics-8.0 目录（嵌套仓库）
+ultralytics-8.0/
+
+# Python 编译文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# 虚拟环境
+venv/
+env/
+.venv/
+.env/
+
+# 模型文件
+models/
+*.pt
+*.pth
+*.bin
+
+# 训练输出
+runs/
+outputs/
+checkpoints/
+
+# 数据文件
+*.jsonl
+*.csv
+*.txt
+
+# 日志文件
+*.log
+*.err
+
+# 临时文件
+*.tmp
+*.temp
