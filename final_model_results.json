@@ -1,0 +1,670 @@
+{
+  "metrics": {
+    "TP": 0,
+    "FP": 0,
+    "FN": 64,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F1": 0.0
+  },
+  "details": [
+    {
+      "image": "crazing_1.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "crazing",
+          1,
+          2,
+          193,
+          194
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 0,0,199,199)\n\n(canvas: 0,0,199,199)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas: 1,1,198,198)\n\n(canvas:"
+    },
+    {
+      "image": "crazing_2.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "crazing",
+          99,
+          120,
+          200,
+          174
+        ],
+        [
+          "crazing",
+          8,
+          15,
+          200,
+          111
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 125, 100, 199, 159"
+    },
+    {
+      "image": "crazing_3.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "crazing",
+          9,
+          97,
+          200,
+          181
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas_width: 200"
+    },
+    {
+      "image": "crazing_4.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "crazing",
+          9,
+          3,
+          197,
+          108
+        ],
+        [
+          "crazing",
+          15,
+          110,
+          197,
+          198
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 0,0,199,199)\n\n(canvas: 0,0,199,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas: 1,1,198,199)\n\n(canvas:"
+    },
+    {
+      "image": "crazing_5.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "crazing",
+          1,
+          113,
+          199,
+          176
+        ],
+        [
+          "crazing",
+          15,
+          4,
+          199,
+          102
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, 1, 200, 199"
+    },
+    {
+      "image": "inclusion_1.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "inclusion",
+          33,
+          5,
+          46,
+          36
+        ],
+        [
+          "inclusion",
+          120,
+          34,
+          130,
+          60
+        ],
+        [
+          "inclusion",
+          116,
+          114,
+          135,
+          198
+        ],
+        [
+          "inclusion",
+          115,
+          72,
+          140,
+          116
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, 105, 158, 169"
+    },
+    {
+      "image": "inclusion_2.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "inclusion",
+          23,
+          98,
+          39,
+          132
+        ],
+        [
+          "inclusion",
+          108,
+          127,
+          123,
+          156
+        ],
+        [
+          "inclusion",
+          106,
+          166,
+          131,
+          199
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas"
+    },
+    {
+      "image": "inclusion_3.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "inclusion",
+          21,
+          15,
+          36,
+          44
+        ],
+        [
+          "inclusion",
+          18,
+          93,
+          42,
+          186
+        ],
+        [
+          "inclusion",
+          19,
+          53,
+          45,
+          95
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, 1, 168, 199"
+    },
+    {
+      "image": "inclusion_4.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "inclusion",
+          91,
+          43,
+          112,
+          140
+        ],
+        [
+          "inclusion",
+          94,
+          2,
+          119,
+          44
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, ymin: 1, width"
+    },
+    {
+      "image": "inclusion_5.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "inclusion",
+          141,
+          89,
+          166,
+          186
+        ],
+        [
+          "inclusion",
+          143,
+          10,
+          158,
+          39
+        ],
+        [
+          "inclusion",
+          140,
+          49,
+          168,
+          90
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, ymin: 1, width"
+    },
+    {
+      "image": "patches_1.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "patches",
+          43,
+          10,
+          106,
+          97
+        ],
+        [
+          "patches",
+          32,
+          91,
+          81,
+          148
+        ],
+        [
+          "patches",
+          23,
+          156,
+          62,
+          198
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 0,0,199,199)\n"
+    },
+    {
+      "image": "patches_2.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "patches",
+          36,
+          1,
+          98,
+          152
+        ],
+        [
+          "patches",
+          115,
+          51,
+          174,
+          190
+        ],
+        [
+          "patches",
+          112,
+          1,
+          200,
+          26
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, ymin: 1, width"
+    },
+    {
+      "image": "patches_3.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "patches",
+          4,
+          101,
+          48,
+          193
+        ],
+        [
+          "patches",
+          80,
+          64,
+          128,
+          181
+        ],
+        [
+          "patches",
+          130,
+          120,
+          171,
+          197
+        ],
+        [
+          "patches",
+          153,
+          1,
+          199,
+          102
+        ],
+        [
+          "patches",
+          6,
+          15,
+          46,
+          90
+        ],
+        [
+          "patches",
+          69,
+          1,
+          106,
+          22
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 0,0,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas: 1,1,199,199)\n\n(canvas:"
+    },
+    {
+      "image": "patches_4.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "patches",
+          93,
+          36,
+          137,
+          83
+        ],
+        [
+          "patches",
+          118,
+          92,
+          165,
+          158
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, ymin: 10, widthsort: 106, heightsort: 106)\n(canvas: 158, ymin: 10, widthsort: 159, heightsort: 106)\n"
+    },
+    {
+      "image": "patches_5.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "patches",
+          33,
+          1,
+          94,
+          155
+        ],
+        [
+          "patches",
+          115,
+          64,
+          163,
+          194
+        ],
+        [
+          "patches",
+          118,
+          1,
+          200,
+          34
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas_width: 100"
+    },
+    {
+      "image": "pitted_surface_1.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "pitted_surface",
+          21,
+          2,
+          92,
+          196
+        ],
+        [
+          "pitted_surface",
+          85,
+          3,
+          188,
+          195
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, 1, 200, 199"
+    },
+    {
+      "image": "pitted_surface_2.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "pitted_surface",
+          24,
+          1,
+          83,
+          175
+        ],
+        [
+          "pitted_surface",
+          85,
+          1,
+          200,
+          199
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, 1, 200, 199"
+    },
+    {
+      "image": "pitted_surface_3.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "pitted_surface",
+          1,
+          1,
+          51,
+          184
+        ],
+        [
+          "pitted_surface",
+          48,
+          2,
+          198,
+          198
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 0,0,199,199)\n\n车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间"
+    },
+    {
+      "image": "pitted_surface_4.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "pitted_surface",
+          18,
+          2,
+          150,
+          199
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 0,0,199,199)\n\n车间墙壁"
+    },
+    {
+      "image": "pitted_surface_5.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "pitted_surface",
+          1,
+          1,
+          193,
+          196
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 0, ymin: 0, width: 1000, height: 1000)\nassistant"
+    },
+    {
+      "image": "rolled-in_scale_1.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "rolled-in_scale",
+          63,
+          38,
+          139,
+          99
+        ],
+        [
+          "rolled-in_scale",
+          72,
+          111,
+          134,
+          169
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvasтяжera: 100, 100, 199, 150)\n(canvasтяжera: 100, 150, 199, 199)\n(canvasтяжera: 150, 100, 199, 150)\n(canvasтяжera: 150, 150, 199, 199)\n(canvasтяжera: 100, 100, 199, 150)\n(canvasтяжera: 100, 150, 199, 199)\n(canvasтяжera: 150, 100, 199, 150)\n(canvasтяжera: 150, 150, 199, 199)\n(canvasтяжera: 100, 100, 199, 150)\n(canvasтяжera: 100, 150, 199, 199)\n(canvasтяжera: 150, 100, 199, 150)\n(canvasтяжera: 150, 150, 199, 199)\n(canvasтяжera: 100, 100, 199, 150)\n(canvasтяжera: 100, 150, 199, 199)\n(canvasтяжera: 150, 100, 199, 150)\n(canvasтяжera: 150, 150, 199, 199)\n(canvasтяжera: 100, 100, 199, 150)\n(canvasтяжera: 100, 150, 199, 199)\n(canvasтяжera: 150, 100, 199, 150)\n(canvasтяжera: 150, 150, 199, 199)\n(canvasтяжera: 100, 100, 199, 150)\n(canvasтяжera: 100"
+    },
+    {
+      "image": "rolled-in_scale_2.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "rolled-in_scale",
+          148,
+          87,
+          197,
+          187
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvasтяжue: 100, 100, 199, 199"
+    },
+    {
+      "image": "rolled-in_scale_3.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "rolled-in_scale",
+          68,
+          63,
+          139,
+          139
+        ],
+        [
+          "rolled-in_scale",
+          99,
+          1,
+          145,
+          39
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvasтяжue: 100, 100, 150, 150"
+    },
+    {
+      "image": "rolled-in_scale_4.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "rolled-in_scale",
+          40,
+          132,
+          138,
+          199
+        ],
+        [
+          "rolled-in_scale",
+          81,
+          1,
+          125,
+          92
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas"
+    },
+    {
+      "image": "rolled-in_scale_5.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "rolled-in_scale",
+          32,
+          102,
+          120,
+          189
+        ],
+        [
+          "rolled-in_scale",
+          52,
+          24,
+          105,
+          92
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 125, 1, 200, 199"
+    },
+    {
+      "image": "scratches_1.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "scratches",
+          26,
+          12,
+          43,
+          171
+        ],
+        [
+          "scratches",
+          8,
+          184,
+          17,
+          196
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, ymin: 1, width: 106, height: 107"
+    },
+    {
+      "image": "scratches_2.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "scratches",
+          92,
+          24,
+          106,
+          176
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 125, ymin: 1, width: 199, height: 199)\n\n车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间车间"
+    },
+    {
+      "image": "scratches_3.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "scratches",
+          148,
+          165,
+          176,
+          199
+        ],
+        [
+          "scratches",
+          167,
+          40,
+          179,
+          121
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, ymin: 1, width: 107, height: 20"
+    },
+    {
+      "image": "scratches_4.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "scratches",
+          157,
+          61,
+          199,
+          199
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, ymin: 1, width: 199, height: 107"
+    },
+    {
+      "image": "scratches_5.jpg",
+      "predictions": [],
+      "ground_truth": [
+        [
+          "scratches",
+          140,
+          40,
+          198,
+          199
+        ]
+      ],
+      "raw_output": "system\nYou are a helpful assistant.\nuser\n\n请检测这张图片中的所有钢材表面缺陷，并给出类别和位置。\nassistant\n(canvas: 105, ymin: 1, width: 199, height: 107"
+    }
+  ]
+}
