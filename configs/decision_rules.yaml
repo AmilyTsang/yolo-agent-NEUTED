@@ -1,0 +1,18 @@
+high_severity:
+  action: manual_review
+  threshold: 1
+  reason: "检测到{}个高风险缺陷，需要人工审核"
+
+medium_severity:
+  manual_review_threshold: 3
+  auto_reject_threshold: 1
+  manual_review_reason: "检测到{}个中等风险缺陷，需要人工审核"
+  auto_reject_reason: "检测到{}个中等风险缺陷，自动判NG"
+
+low_severity:
+  action: auto_pass
+  reason: "仅检测到低风险缺陷，自动通过"
+
+no_defects:
+  action: auto_pass
+  reason: "未检测到缺陷，自动通过"

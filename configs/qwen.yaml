@@ -1,0 +1,13 @@
+model:
+  base_path: "models/qwen/base"
+  lora_path: ""
+  
+inference:
+  device: "auto"
+  max_new_tokens: 500
+  temperature: 0
+  do_sample: false
+  
+prompt:
+  system: "你是宝钢热轧产线资深工程师，精通钢板表面缺陷分析与处理。"
+  template: "prompt_template"

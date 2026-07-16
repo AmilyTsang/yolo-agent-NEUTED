@@ -1,0 +1,12 @@
+knowledge:
+  enterprise_standard: "knowledge/enterprise_standard"
+  historical_cases: "knowledge/historical_cases"
+  repair_guidelines: "knowledge/repair_guidelines"
+  defect_manual: "knowledge/defect_manual"
+  
+vector_store:
+  type: "simple"
+  top_k: 2
+  
+embedding:
+  model: "sentence-transformers/all-MiniLM-L6-v2"

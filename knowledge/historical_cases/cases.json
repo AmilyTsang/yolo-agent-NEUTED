@@ -1,0 +1,98 @@
+{
+    "crazing": [
+        {
+            "case_id": "CASE-2024-03-A01",
+            "title": "产线A发丝纹缺陷分析",
+            "description": "2024年3月产线A发现发丝纹缺陷，原因为精轧机工作辊表面磨损，更换工作辊后缺陷消除。",
+            "solution": "更换精轧机工作辊，建立辊面磨损监测机制",
+            "similarity": 0.92
+        },
+        {
+            "case_id": "CASE-2024-05-B02",
+            "title": "产线B发丝纹缺陷分析",
+            "description": "2024年5月产线B出现类似问题，经分析是轧制速度过快导致，降低速度后缺陷率下降80%。",
+            "solution": "优化轧制速度参数，降低精轧阶段速度",
+            "similarity": 0.88
+        }
+    ],
+    "inclusion": [
+        {
+            "case_id": "CASE-2024-01-C01",
+            "title": "产线C夹杂缺陷分析",
+            "description": "2024年1月产线C发现夹杂缺陷，追溯发现是连铸坯质量问题，加强连铸工艺控制后解决。",
+            "solution": "加强连铸工艺控制，优化钢水净化过程",
+            "similarity": 0.95
+        },
+        {
+            "case_id": "CASE-2024-06-A03",
+            "title": "产线A夹杂缺陷分析",
+            "description": "2024年6月产线A出现夹杂，原因为钢水脱氧不完全，优化脱氧工艺后问题解决。",
+            "solution": "优化钢水脱氧工艺，增加脱氧剂用量",
+            "similarity": 0.89
+        }
+    ],
+    "patches": [
+        {
+            "case_id": "CASE-2024-02-B01",
+            "title": "产线B斑块缺陷分析",
+            "description": "2024年2月产线B出现斑块缺陷，原因为退火炉气氛控制不当，调整气氛参数后消除。",
+            "solution": "调整退火炉气氛参数，优化氮气保护",
+            "similarity": 0.91
+        },
+        {
+            "case_id": "CASE-2024-04-C02",
+            "title": "产线C斑块缺陷分析",
+            "description": "2024年4月产线C发现类似问题，是酸洗不彻底导致，改进酸洗工艺后解决。",
+            "solution": "改进酸洗工艺，延长酸洗时间",
+            "similarity": 0.86
+        }
+    ],
+    "pitted_surface": [
+        {
+            "case_id": "CASE-2024-03-A02",
+            "title": "产线A麻点缺陷分析",
+            "description": "2024年3月产线A发现麻点，原因为轧辊表面有异物，清理轧辊后问题解决。",
+            "solution": "定期清理轧辊表面，增加异物检测装置",
+            "similarity": 0.93
+        },
+        {
+            "case_id": "CASE-2024-07-B03",
+            "title": "产线B麻点缺陷分析",
+            "description": "2024年7月产线B出现麻点，是钢板表面氧化皮未清理干净，加强除鳞后消除。",
+            "solution": "加强除鳞工艺，提高高压水除鳞压力",
+            "similarity": 0.87
+        }
+    ],
+    "rolled-in_scale": [
+        {
+            "case_id": "CASE-2024-01-C03",
+            "title": "产线C氧化铁皮压入分析",
+            "description": "2024年1月产线C发现氧化铁皮压入，原因为除鳞水压力不足，提高水压后解决。",
+            "solution": "提高除鳞水压力，优化除鳞喷嘴布置",
+            "similarity": 0.94
+        },
+        {
+            "case_id": "CASE-2024-05-A04",
+            "title": "产线A氧化铁皮压入分析",
+            "description": "2024年5月产线A出现类似问题，是加热温度过高导致氧化皮过厚，优化加热制度后解决。",
+            "solution": "优化加热制度，降低加热温度",
+            "similarity": 0.85
+        }
+    ],
+    "scratches": [
+        {
+            "case_id": "CASE-2024-02-B04",
+            "title": "产线B划痕缺陷分析",
+            "description": "2024年2月产线B发现划痕，原因为矫直机辊面有毛刺，打磨辊面后消除。",
+            "solution": "定期打磨矫直机辊面，检查辊面状态",
+            "similarity": 0.90
+        },
+        {
+            "case_id": "CASE-2024-06-C04",
+            "title": "产线C划痕缺陷分析",
+            "description": "2024年6月产线C出现划痕，是运输过程中与异物接触，改进包装方式后解决。",
+            "solution": "改进包装方式，增加防护措施",
+            "similarity": 0.83
+        }
+    ]
+}

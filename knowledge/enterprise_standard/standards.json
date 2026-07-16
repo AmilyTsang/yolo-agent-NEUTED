@@ -1,0 +1,44 @@
+{
+    "crazing": {
+        "name": "crazing (发丝纹)",
+        "description": "钢板表面呈现细小、密集的发丝状裂纹",
+        "standard": "发丝纹缺陷长度超过50mm或宽度超过0.5mm判定为不合格",
+        "severity": "medium",
+        "source": "宝钢企业标准Q/BQB 401-2019"
+    },
+    "inclusion": {
+        "name": "inclusion (夹杂)",
+        "description": "钢板内部或表面存在的非金属夹杂物",
+        "standard": "单个夹杂面积超过10mm²或单位面积超过3个判定为不合格",
+        "severity": "high",
+        "source": "宝钢企业标准Q/BQB 401-2019"
+    },
+    "patches": {
+        "name": "patches (斑块)",
+        "description": "钢板表面出现的不规则形状的暗色斑块",
+        "standard": "斑块面积超过板面积的1%判定为不合格",
+        "severity": "medium",
+        "source": "宝钢企业标准Q/BQB 401-2019"
+    },
+    "pitted_surface": {
+        "name": "pitted_surface (麻点)",
+        "description": "钢板表面呈现的点状凹陷缺陷",
+        "standard": "麻点深度超过0.3mm或密度超过5个/cm²判定为不合格",
+        "severity": "low",
+        "source": "宝钢企业标准Q/BQB 401-2019"
+    },
+    "rolled-in_scale": {
+        "name": "rolled-in_scale (氧化铁皮压入)",
+        "description": "轧制过程中氧化铁皮被压入钢板表面形成的缺陷",
+        "standard": "单个压入点面积超过5mm²判定为不合格",
+        "severity": "medium",
+        "source": "宝钢企业标准Q/BQB 401-2019"
+    },
+    "scratches": {
+        "name": "scratches (划痕)",
+        "description": "钢板表面被尖锐物体划过留下的线性痕迹",
+        "standard": "划痕深度超过0.2mm或长度超过100mm判定为不合格",
+        "severity": "low",
+        "source": "宝钢企业标准Q/BQB 401-2019"
+    }
+}

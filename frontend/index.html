@@ -260,6 +260,15 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
         }
+        .btn-warning {
+            background: var(--warning);
+            color: white;
+        }
+        .btn-warning:hover {
+            background: #f1c40f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
+        }
         .btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
@@ -345,7 +354,6 @@
             from { transform: translateX(100px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
-        /* 问答模式样式 */
         .chat-container {
             display: flex;
             flex-direction: column;
@@ -418,7 +426,6 @@
         .chat-input button {
             padding: 12px 20px;
         }
-        /* 图片放大模态框 */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -468,6 +475,32 @@
             color: #666;
             font-size: 14px;
         }
+        .decision-info {
+            background: #e8f4fc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .decision-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .decision-pass {
+            background: var(--success);
+            color: white;
+        }
+        .decision-reject {
+            background: var(--danger);
+            color: white;
+        }
+        .decision-review {
+            background: var(--warning);
+            color: white;
+        }
         @media (max-width: 1024px) {
             .main-content {
                 grid-template-columns: 1fr 1fr;
@@ -491,7 +524,6 @@
         </div>
         
         <div class="main-content">
-            <!-- 上传区域 -->
             <div class="card">
                 <div class="card-header">
                     <h2>📁 上传图片</h2>
@@ -513,7 +545,6 @@
                 </div>
             </div>
             
-            <!-- 检测结果 -->
             <div class="card">
                 <div class="card-header">
                     <h2>📊 检测结果</h2>
@@ -527,7 +558,6 @@
                 </div>
             </div>
             
-            <!-- 图片内容分析 -->
             <div class="card">
                 <div class="card-header">
                     <h2>📈 质量分析</h2>
@@ -540,7 +570,6 @@
                 </div>
             </div>
             
-            <!-- 缺陷详细分析 -->
             <div class="card" style="grid-column: span 2;">
                 <div class="card-header">
                     <h2>🔍 缺陷详细分析</h2>
@@ -553,7 +582,6 @@
                 </div>
             </div>
             
-            <!-- 问答模式 -->
             <div class="card" style="grid-column: span 3;">
                 <div class="card-header">
                     <h2>💬 智能问答</h2>
@@ -585,7 +613,6 @@
         </div>
     </div>
     
-    <!-- 放大模态框 -->
     <div class="modal-overlay" id="zoomModal">
         <div class="modal-content">
             <button class="modal-close" id="closeModal">×</button>
@@ -617,8 +644,9 @@
         let currentResults = null;
         let currentAnalysis = null;
         let currentDefects = [];
+        let currentDecision = null;
+        let currentDecisionReason = '';
         
-        // 拖拽上传
         uploadArea.addEventListener('dragover', (e) => {
             e.preventDefault();
             uploadArea.classList.add('dragover');
@@ -685,11 +713,13 @@
                 if (data.success) {
                     currentFileId = data.file_id;
                     currentResults = data.defects;
-                    currentAnalysis = data.analysis;
+                    currentAnalysis = data.fused_results;
                     currentDefects = data.defects;
+                    currentDecision = data.decision;
+                    currentDecisionReason = data.decision_reason;
                     
                     displayResults(data);
-                    displayAnalysis(data.analysis);
+                    displayAnalysis(data.fused_results);
                     await analyzeImageContent(data.file_id, data.defects);
                     
                     generateReportBtn.style.display = 'block';
@@ -710,61 +740,31 @@
         function displayResults(data) {
             const hasDefects = data.defects && data.defects.length > 0;
             
-            let html = `
-                <div class="result-image-container" id="resultImageContainer">
-                    <img src="${data.result_image}" class="result-image" alt="检测结果">
-            `;
+            let html = '';
             
-            if (hasDefects) {
-                const img = new Image();
-                img.onload = () => {
-                    const container = document.getElementById('resultImageContainer');
-                    const resultImg = container.querySelector('.result-image');
-                    const containerWidth = resultImg.offsetWidth;
-                    const scale = containerWidth / img.width;
-                    
-                    data.defects.forEach((defect, idx) => {
-                        const [x1, y1, x2, y2] = defect.bbox;
-                        const width = (x2 - x1) * scale;
-                        const height = (y2 - y1) * scale;
-                        const left = x1 * scale;
-                        const top = y1 * scale;
-                        
-                        const marker = document.createElement('div');
-                        marker.className = 'defect-marker';
-                        marker.style.left = left + 'px';
-                        marker.style.top = top + 'px';
-                        marker.style.width = width + 'px';
-                        marker.style.height = height + 'px';
-                        marker.setAttribute('data-defect-index', idx);
-                        
-                        const label = document.createElement('div');
-                        label.className = 'defect-label';
-                        label.textContent = defect.type;
-                        marker.appendChild(label);
-                        
-                        marker.addEventListener('click', () => {
-                            showDefectDetail(idx);
-                        });
-                        
-                        container.appendChild(marker);
-                    });
-                };
-                img.src = data.result_image;
+            if (currentDecision) {
+                const decisionClass = currentDecision === 'auto_pass' ? 'decision-pass' : 
+                                      currentDecision === 'auto_reject' ? 'decision-reject' : 'decision-review';
+                const decisionText = currentDecision === 'auto_pass' ? '自动通过' : 
+                                     currentDecision === 'auto_reject' ? '自动判NG' : '人工审核';
+                
+                html += `
+                    <div class="decision-info">
+                        <div class="decision-badge ${decisionClass}">${decisionText}</div>
+                        <div style="margin-top: 10px; color: #666; font-size: 14px;">${currentDecisionReason}</div>
+                    </div>
+                `;
             }
             
             html += `
-                </div>
-                <div style="margin-top: 15px;">
-                    <div class="stats-bar">
-                        <div class="stat-item">
-                            <div class="stat-value">${hasDefects ? data.defects.length : 0}</div>
-                            <div class="stat-label">缺陷数量</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">${hasDefects ? new Set(data.defects.map(d => d.type)).size : 0}</div>
-                            <div class="stat-label">缺陷类型</div>
-                        </div>
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-value">${hasDefects ? data.defects.length : 0}</div>
+                        <div class="stat-label">缺陷数量</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${hasDefects ? new Set(data.defects.map(d => d.type)).size : 0}</div>
+                        <div class="stat-label">缺陷类型</div>
                     </div>
                 </div>
             `;
@@ -772,62 +772,36 @@
             resultContainer.innerHTML = html;
         }
         
-        function displayAnalysis(analysis) {
-            if (!analysis || analysis.length === 0) {
+        function displayAnalysis(fusedResults) {
+            if (!fusedResults || fusedResults.length === 0) {
                 analysisContainer.innerHTML = '<div class="no-result"><div>✅</div><p>未检测到缺陷，产品质量良好！</p></div>';
                 return;
             }
             
-            const html = analysis.map((item, idx) => {
-                const severity = getSeverity(item.type);
+            const html = fusedResults.map((item, idx) => {
+                const severity = item.severity;
                 const severityClass = `severity-${severity}`;
+                const severityText = severity === 'high' ? '高' : severity === 'medium' ? '中' : '低';
                 
                 return `
                     <div class="defect-item" data-index="${idx}" onclick="selectDefect(${idx})">
                         <div class="defect-header">
                             <div style="display: flex; align-items: center; gap: 10px;">
-                                <span class="defect-type">缺陷 ${idx + 1}: ${item.type}</span>
-                                <span class="defect-severity ${severityClass}">${severity === 'high' ? '高' : severity === 'medium' ? '中' : '低'}风险</span>
+                                <span class="defect-type">缺陷 ${idx + 1}: ${item.defect_type}</span>
+                                <span class="defect-severity ${severityClass}">${severityText}风险</span>
                             </div>
-                            <span class="defect-conf">置信度: ${(item.confidence * 100).toFixed(1)}%</span>
+                            <span class="defect-conf">置信度: ${(item.confidence_level * 100).toFixed(1)}%</span>
                         </div>
-                        <div class="defect-desc">${item.description}</div>
                         
-                        ${item.causes && item.causes.length > 0 ? `
-                            <div class="info-section">
-                                <div class="info-title">💡 可能原因</div>
-                                ${item.causes.map(c => `
-                                    <div class="info-item">
-                                        <span>${c.cause}</span>
-                                        <span class="info-source">来源: ${c.source}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
+                        <div class="info-section">
+                            <div class="info-title">📋 分析依据</div>
+                            ${item.evidence.map(e => `<div class="info-item"><span>${e}</span></div>`).join('')}
+                        </div>
                         
-                        ${item.solutions && item.solutions.length > 0 ? `
-                            <div class="info-section">
-                                <div class="info-title">🛠️ 解决方案</div>
-                                ${item.solutions.map(s => `
-                                    <div class="info-item">
-                                        <span>${s.solution}</span>
-                                        <span class="info-source">来源: ${s.source}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-                        
-                        ${item.prevention && item.prevention.length > 0 ? `
-                            <div class="info-section">
-                                <div class="info-title">✅ 预防措施</div>
-                                ${item.prevention.map(p => `
-                                    <div class="info-item">
-                                        <span>${p.method}</span>
-                                        <span class="info-source">来源: ${p.source}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
+                        <div class="info-section">
+                            <div class="info-title">💡 处理建议</div>
+                            <div class="info-item"><span>${item.recommendation}</span></div>
+                        </div>
                     </div>
                 `;
             }).join('');
@@ -871,15 +845,18 @@
                     <div style="margin-bottom: 15px;">
                         <h4 style="margin-bottom: 10px; color: #333;">缺陷详情</h4>
                         <div style="max-height: 200px; overflow-y: auto;">
-                            ${analysis.defect_details.map(d => `
-                                <div style="display: flex; justify-content: space-between; padding: 8px 12px; background: white; border-radius: 4px; margin-bottom: 5px;">
-                                    <div>
-                                        <strong>${d.index}.</strong> ${d.type}
-                                        <span class="defect-severity severity-${d.severity}" style="margin-left: 8px;">${d.severity === 'high' ? '高' : d.severity === 'medium' ? '中' : '低'}</span>
+                            ${analysis.defect_details.map(d => {
+                                const severityText = d.severity === 'high' ? '高' : d.severity === 'medium' ? '中' : '低';
+                                return `
+                                    <div style="display: flex; justify-content: space-between; padding: 8px 12px; background: white; border-radius: 4px; margin-bottom: 5px;">
+                                        <div>
+                                            <strong>${d.index}.</strong> ${d.type}
+                                            <span class="defect-severity severity-${d.severity}" style="margin-left: 8px;">${severityText}</span>
+                                        </div>
+                                        <span style="color: #666; font-size: 12px;">${(d.confidence * 100).toFixed(0)}%</span>
                                     </div>
-                                    <span style="color: #666; font-size: 12px;">${(d.confidence * 100).toFixed(0)}%</span>
-                                </div>
-                            `).join('')}
+                                `;
+                            }).join('')}
                         </div>
                     </div>
                 `;
@@ -913,29 +890,6 @@
             document.querySelectorAll('.defect-item').forEach((item, i) => {
                 item.classList.toggle('active', i === index);
             });
-            
-            showDefectDetail(index);
-        }
-        
-        function showDefectDetail(index) {
-            if (!currentResults || !currentResults[index]) return;
-            
-            const defect = currentResults[index];
-            const img = new Image();
-            img.onload = () => {
-                const [x1, y1, x2, y2] = defect.bbox;
-                const padding = 20;
-                
-                const cropX = Math.max(0, x1 - padding);
-                const cropY = Math.max(0, y1 - padding);
-                const cropWidth = Math.min(img.width - cropX, (x2 - x1) + padding * 2);
-                const cropHeight = Math.min(img.height - cropY, (y2 - y1) + padding * 2);
-                
-                zoomImage.src = '/static/' + currentFileId + '_result.jpg';
-                zoomCaption.textContent = `缺陷 ${index + 1}: ${defect.type}（置信度: ${(defect.confidence * 100).toFixed(1)}%）`;
-                zoomModal.classList.add('show');
-            };
-            img.src = '/uploads/' + currentFileId + '.jpg';
         }
         
         closeModal.addEventListener('click', () => {
@@ -965,7 +919,7 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    window.open(`/reports/${data.report_path}`, '_blank');
+                    window.open(`/reports/${data.html_report}`, '_blank');
                     showToast('报告已生成！', 'success');
                 } else {
                     showToast('生成报告失败: ' + data.error, 'error');
@@ -979,7 +933,6 @@
             const question = questionInput.value.trim();
             if (!question) return;
             
-            // 添加用户问题
             addChatMessage(question, 'user');
             questionInput.value = '';
             askBtn.disabled = true;

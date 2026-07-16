@@ -1,0 +1,19 @@
+model:
+  path: "models/yolo/best.pt"
+  
+confidence:
+  threshold: 0.6
+  iou_threshold: 0.5
+  
+classes:
+  - crazing
+  - inclusion
+  - patches
+  - pitted_surface
+  - rolled-in_scale
+  - scratches
+  
+inference:
+  device: "auto"
+  imgsz: 640
+  augment: false

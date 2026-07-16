@@ -1,0 +1,24 @@
+app:
+  host: "0.0.0.0"
+  port: 5000
+  debug: false
+  
+directories:
+  uploads: "runtime/uploads"
+  reports: "runtime/reports"
+  logs: "runtime/logs"
+  cache: "runtime/cache"
+  
+security:
+  allowed_extensions:
+    - png
+    - jpg
+    - jpeg
+    - bmp
+    - gif
+  max_file_size_mb: 16
+  
+report:
+  format:
+    - json
+    - pdf

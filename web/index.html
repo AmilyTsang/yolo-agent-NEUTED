@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工业缺陷分析助手</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; color: white; margin-bottom: 30px; }
+        .header h1 { font-size: 32px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 20px; }
+        .card-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #3498db; }
+        .upload-area { border: 2px dashed #3498db; border-radius: 8px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.3s; }
+        .upload-area:hover { border-color: #2980b9; background: #f8f9fa; }
+        .upload-area.dragover { border-color: #27ae60; background: #e8f5e9; }
+        .upload-area i { font-size: 48px; color: #3498db; margin-bottom: 15px; }
+        .upload-area p { color: #7f8c8d; font-size: 16px; }
+        .image-preview { margin-top: 20px; text-align: center; }
+        .image-preview img { max-width: 100%; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .btn-success { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; }
+        .btn-success:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4); }
+        .btn-danger { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; }
+        .btn-danger:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4); }
+        .btn-warning { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; }
+        .btn-group { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+        .result-item { background: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 10px; border-left: 4px solid #3498db; }
+        .result-item.high { border-left-color: #e74c3c; }
+        .result-item.medium { border-left-color: #f39c12; }
+        .result-item.low { border-left-color: #27ae60; }
+        .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .defect-type { font-weight: bold; color: #2c3e50; }
+        .confidence { color: #7f8c8d; font-size: 14px; }
+        .evidence-list { list-style: none; margin-top: 10px; }
+        .evidence-item { padding-left: 20px; position: relative; margin-bottom: 5px; font-size: 14px; color: #555; }
+        .evidence-item::before { content: '•'; position: absolute; left: 0; color: #3498db; }
+        .decision-badge { display: inline-block; padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 14px; }
+        .decision-pass { background: #27ae60; color: white; }
+        .decision-reject { background: #e74c3c; color: white; }
+        .decision-review { background: #f39c12; color: white; }
+        .decision-pending { background: #7f8c8d; color: white; }
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+        .stat-box { background: #ecf0f1; padding: 15px; border-radius: 8px; text-align: center; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #3498db; }
+        .stat-label { font-size: 12px; color: #7f8c8d; margin-top: 5px; }
+        .loading { text-align: center; padding: 40px; }
+        .loading i { font-size: 48px; color: #3498db; animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .hidden { display: none; }
+        .notification { position: fixed; top: 20px; right: 20px; padding: 15px 25px; border-radius: 8px; color: white; font-weight: bold; z-index: 1000; animation: slideIn 0.3s; }
+        .notification.success { background: #27ae60; }
+        .notification.error { background: #e74c3c; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-search"></i> 工业缺陷分析助手</h1>
+            <p>基于 YOLOv8 + Qwen2.5-VL 的智能缺陷检测系统</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="card">
+                <div class="card-title">📷 图片上传</div>
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>点击或拖拽图片到此处上传</p>
+                    <p style="font-size: 14px; margin-top: 10px;">支持格式: JPG, PNG, BMP, GIF</p>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <div class="image-preview" id="imagePreview"></div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="analyzeBtn" disabled>开始分析</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">📊 检测结果</div>
+                <div id="resultArea">
+                    <div class="loading hidden" id="loading">
+                        <i class="fas fa-spinner"></i>
+                        <p>正在分析中...</p>
+                    </div>
+                    <div id="results"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">🔍 缺陷详细分析</div>
+                <div id="analysisArea"></div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">⚖️ 判定结果</div>
+                <div id="decisionArea">
+                    <div id="decisionBadge" class="decision-badge decision-pending">待检测</div>
+                    <div id="decisionReason" style="margin-top: 15px; color: #666; text-align: center;"></div>
+                    <div class="btn-group" id="actionButtons">
+                        <button class="btn btn-success" id="confirmPassBtn" disabled>确认通过</button>
+                        <button class="btn btn-danger" id="confirmRejectBtn" disabled>确认不通过</button>
+                        <button class="btn btn-primary" id="generateReportBtn" disabled>生成报告</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentFileId = null;
+        let currentImage = null;
+        
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const loading = document.getElementById('loading');
+        const results = document.getElementById('results');
+        const analysisArea = document.getElementById('analysisArea');
+        const decisionBadge = document.getElementById('decisionBadge');
+        const decisionReason = document.getElementById('decisionReason');
+        const confirmPassBtn = document.getElementById('confirmPassBtn');
+        const confirmRejectBtn = document.getElementById('confirmRejectBtn');
+        const generateReportBtn = document.getElementById('generateReportBtn');
+        
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+        uploadArea.addEventListener('drop', (e) => { e.preventDefault(); uploadArea.classList.remove('dragover'); handleFile(e.dataTransfer.files[0]); });
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        
+        function handleFile(file) {
+            if (!file) return;
+            
+            currentImage = file;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                analyzeBtn.disabled = false;
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        analyzeBtn.addEventListener('click', async () => {
+            if (!currentImage) return;
+            
+            showLoading(true);
+            analyzeBtn.disabled = true;
+            
+            try {
+                const formData = new FormData();
+                formData.append('image', currentImage);
+                
+                const uploadResponse = await fetch('/api/upload', { method: 'POST', body: formData });
+                const uploadResult = await uploadResponse.json();
+                
+                if (!uploadResult.success) {
+                    showNotification('上传失败: ' + uploadResult.error, 'error');
+                    return;
+                }
+                
+                currentFileId = uploadResult.file_id;
+                
+                const detectResponse = await fetch('/api/detect', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file_id: currentFileId })
+                });
+                const detectResult = await detectResponse.json();
+                
+                if (detectResult.success) {
+                    displayResults(detectResult);
+                    displayAnalysis(detectResult);
+                    displayDecision(detectResult);
+                    showNotification('分析完成', 'success');
+                } else {
+                    showNotification('分析失败: ' + detectResult.error, 'error');
+                }
+                
+            } catch (error) {
+                showNotification('请求失败: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        });
+        
+        function showLoading(show) {
+            loading.classList.toggle('hidden', !show);
+            results.classList.toggle('hidden', show);
+            analysisArea.classList.toggle('hidden', show);
+        }
+        
+        function displayResults(result) {
+            const defects = result.defects || [];
+            
+            if (defects.length === 0) {
+                results.innerHTML = '<p style="text-align: center; color: #7f8c8d;">未检测到缺陷</p>';
+                return;
+            }
+            
+            let html = '<div class="stats-row">';
+            html += `<div class="stat-box"><div class="stat-value">${defects.length}</div><div class="stat-label">总缺陷数</div></div>`;
+            
+            const types = {};
+            defects.forEach(d => { types[d.defect_type] = (types[d.defect_type] || 0) + 1; });
+            html += `<div class="stat-box"><div class="stat-value">${Object.keys(types).length}</div><div class="stat-label">缺陷类型</div></div>`;
+            
+            const high = (result.fused_results || []).filter(d => d.severity === 'high').length;
+            const medium = (result.fused_results || []).filter(d => d.severity === 'medium').length;
+            html += `<div class="stat-box"><div class="stat-value">${high}</div><div class="stat-label">高风险</div></div>`;
+            html += `<div class="stat-box"><div class="stat-value">${medium}</div><div class="stat-label">中风险</div></div>`;
+            html += '</div>';
+            
+            html += '<ul>';
+            defects.forEach((defect, index) => {
+                html += `<li class="result-item">
+                    <div class="result-header">
+                        <span class="defect-type">缺陷 ${index + 1}: ${defect.defect_type}</span>
+                        <span class="confidence">置信度: ${defect.confidence.toFixed(4)}</span>
+                    </div>
+                    <div style="font-size: 14px; color: #555;">坐标: (${defect.bbox.join(', ')})</div>
+                </li>`;
+            });
+            html += '</ul>';
+            
+            results.innerHTML = html;
+        }
+        
+        function displayAnalysis(result) {
+            const fusedResults = result.fused_results || [];
+            
+            if (fusedResults.length === 0) {
+                analysisArea.innerHTML = '<p style="text-align: center; color: #7f8c8d;">暂无详细分析</p>';
+                return;
+            }
+            
+            let html = '';
+            fusedResults.forEach((item, index) => {
+                html += `<div class="result-item ${item.severity}">
+                    <div class="result-header">
+                        <span class="defect-type">缺陷 ${index + 1}: ${item.defect_type}</span>
+                        <span class="confidence">风险等级: ${item.severity === 'high' ? '高' : item.severity === 'medium' ? '中' : '低'}</span>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <strong>分析依据:</strong>
+                        <ul class="evidence-list">`;
+                
+                item.evidence.forEach(e => { html += `<li class="evidence-item">${e}</li>`; });
+                
+                html += `</ul>`;
+                
+                if (item.causes) html += `<div style="margin-top: 10px; font-size: 14px; color: #555;"><strong>成因分析:</strong> ${item.causes}</div>`;
+                if (item.measures) html += `<div style="margin-top: 5px; font-size: 14px; color: #555;"><strong>解决措施:</strong> ${item.measures}</div>`;
+                if (item.suggestions) html += `<div style="margin-top: 5px; font-size: 14px; color: #555;"><strong>预防建议:</strong> ${item.suggestions}</div>`;
+                if (item.recommendation) html += `<div style="margin-top: 10px; font-size: 14px; color: #3498db; font-weight: bold;">💡 ${item.recommendation}</div>`;
+                
+                html += `</div></div>`;
+            });
+            
+            analysisArea.innerHTML = html;
+        }
+        
+        function displayDecision(result) {
+            const decision = result.decision || 'pending';
+            
+            decisionBadge.className = `decision-badge decision-${decision}`;
+            
+            const decisionText = {
+                'auto_pass': '自动通过',
+                'auto_reject': '自动判NG',
+                'manual_review': '人工审核',
+                'pending': '待检测'
+            };
+            decisionBadge.textContent = decisionText[decision] || '待检测';
+            decisionReason.textContent = result.decision_reason || '';
+            
+            confirmPassBtn.disabled = decision !== 'manual_review' && decision !== 'auto_reject';
+            confirmRejectBtn.disabled = decision !== 'manual_review' && decision !== 'auto_pass';
+            generateReportBtn.disabled = !currentFileId;
+        }
+        
+        confirmPassBtn.addEventListener('click', async () => {
+            await confirmDecision('pass');
+        });
+        
+        confirmRejectBtn.addEventListener('click', async () => {
+            await confirmDecision('reject');
+        });
+        
+        async function confirmDecision(decision) {
+            if (!currentFileId) return;
+            
+            try {
+                const response = await fetch('/api/confirm', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        file_id: currentFileId,
+                        user_id: 'admin',
+                        confirm_decision: decision
+                    })
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification(result.message, 'success');
+                    displayDecision({ decision: result.decision === 'auto_pass' ? 'auto_pass' : 'auto_reject', decision_reason: result.message });
+                } else {
+                    showNotification('确认失败: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showNotification('请求失败: ' + error.message, 'error');
+            }
+        }
+        
+        generateReportBtn.addEventListener('click', async () => {
+            if (!currentFileId) return;
+            
+            try {
+                const response = await fetch('/api/generate_report', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file_id: currentFileId })
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification(result.message, 'success');
+                    if (result.json_report) {
+                        window.open(`/api/reports/${result.json_report}`, '_blank');
+                    }
+                    if (result.pdf_report) {
+                        window.open(`/api/reports/${result.pdf_report}`, '_blank');
+                    }
+                } else {
+                    showNotification('生成报告失败: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showNotification('请求失败: ' + error.message, 'error');
+            }
+        });
+        
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
